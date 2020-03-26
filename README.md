@@ -1,8 +1,9 @@
 # README
 
 Related objects:
+
 * Users
-* Administrators
 * Tests
 * Questions
+* Answers
 * Test results
