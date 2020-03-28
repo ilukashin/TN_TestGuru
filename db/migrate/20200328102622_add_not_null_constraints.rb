@@ -5,7 +5,7 @@ class AddNotNullConstraints < ActiveRecord::Migration[6.0]
     
     change_column_null(:questions, :body, false)
 
-    change_column_null(:answers, :title, false)
+    change_column_null(:answers, :body, false)
     
     change_column_null(:categories, :title, false)
     
