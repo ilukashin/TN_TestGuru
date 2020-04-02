@@ -5,6 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+TESTS_USERS_RELATIONS = 'INSERT into tests_users VALUES
+  (1, 1),
+  (3, 1),
+  (5, 1),
+  (2, 2),
+  (4, 2);'
 
 Category.create([
                   { title: 'Ruby' },
@@ -35,3 +41,4 @@ User.create([
               { name: 'admin', email: 'admin@example.com' },
               { name: 'customer', email: 'customer@example.com' }
             ])
+ActiveRecord::Base.connection.execute(TESTS_USERS_RELATIONS)
