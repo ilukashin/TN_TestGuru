@@ -39,6 +39,8 @@ users = User.create!([
               { name: 'customer', email: 'customer@example.com' }
             ])
 
+tests.each { |test| test.update(author_id: user[0].id) }            
+
 TESTS_USERS_RELATIONS = "INSERT into tests_users VALUES
   (#{tests[0].id}, #{users[0].id}),
   (#{tests[2].id}, #{users[0].id}),
