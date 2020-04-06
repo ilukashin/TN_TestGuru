@@ -5,41 +5,40 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-categories = Category.create!([
-                  { title: 'Ruby' },
-                  { title: 'DevOps' },
-                  { title: 'HTML' }
-                ])
-
-tests = Test.create!([
-              { title: 'Ruby basics', level: 1, category_id: categories[0].id },
-              { title: 'Ruby improved', level: 2, category_id: categories[0].id },
-              { title: 'CI/CD', level: 2, category_id: categories[1].id },
-              { title: 'Containerization software', level: 3, category_id: categories[1].id },
-              { title: 'HTML/CSS', level: 1, category_id: categories[2].id }
-            ])
-
-questions = Question.create!([
-                  { body: 'How to include module in class?', test_id: tests[0].id },
-                  { body: 'How to forward ports from docker containers?', test_id: tests[3].id },
-                  { body: 'Test question1', test_id: tests[1].id },
-                  { body: 'Another test question', test_id: tests[2].id }
-                ])
-
-Answer.create!([
-                { body: 'Some data1', correct: true, question_id: questions[0].id },
-                { body: 'Some data2', correct: false, question_id: questions[0].id },
-                { body: 'Some data3', correct: true, question_id: questions[1].id },
-                { body: 'Some data4', correct: false, question_id: questions[2].id },
-                { body: 'Some data5', correct: false, question_id: questions[2].id }
-              ])
 
 users = User.create!([
-              { name: 'admin', email: 'admin@example.com' },
-              { name: 'customer', email: 'customer@example.com' }
-            ])
+                       { name: 'admin', email: 'admin@example.com' },
+                       { name: 'customer', email: 'customer@example.com' }
+                     ])
 
-tests.each { |test| test.update(author_id: user[0].id) }            
+categories = Category.create!([
+                                { title: 'Ruby' },
+                                { title: 'DevOps' },
+                                { title: 'HTML' }
+                              ])
+
+tests = Test.create!([
+                       { title: 'Ruby basics', level: 1, category: categories[0], author: users[0] },
+                       { title: 'Ruby improved', level: 2, category: categories[0], author: users[0] },
+                       { title: 'CI/CD', level: 2, category: categories[1], author: users[0] },
+                       { title: 'Containerization software', level: 3, category: categories[1], author: users[0] },
+                       { title: 'HTML/CSS', level: 1, category: categories[2], author: users[1] }
+                     ])
+
+questions = Question.create!([
+                               { body: 'How to include module in class?', test: tests[0] },
+                               { body: 'How to forward ports from docker containers?', test: tests[3] },
+                               { body: 'Test question1', test: tests[1] },
+                               { body: 'Another test question', test: tests[2] }
+                             ])
+
+Answer.create!([
+                 { body: 'Some data1', correct: true, question: questions[0] },
+                 { body: 'Some data2', correct: false, question: questions[0] },
+                 { body: 'Some data3', correct: true, question: questions[1] },
+                 { body: 'Some data4', correct: false, question: questions[2] },
+                 { body: 'Some data5', correct: false, question: questions[2] }
+               ])
 
 TESTS_USERS_RELATIONS = "INSERT into tests_users VALUES
   (#{tests[0].id}, #{users[0].id}),
