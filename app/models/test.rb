@@ -5,7 +5,15 @@ class Test < ApplicationRecord
   has_many :tests_users, dependent: :destroy
   has_many :users, through: :tests_users
 
-  def self.by_category(name)
+  scope :easy, -> { where(level: 0..1) }
+  scope :medium, -> { where(level: 2..4) }
+  scope :hard, -> { where(level: 5..Float::INFINITY) }
+
+  # кажется, что скоупы сделаны для упрощения чтения класса
+  # и лучше писать их в одну строчку в виде { блока кода },
+  # но тогда строка будет слишком длинной, поэтому я оставил написание таким
+  # вопрос: какие best-pracrice в таких случаях?
+  scope :by_category, -> (name) do
     joins(:category)
       .where(categories: {title: name})
       .order(title: :desc)
