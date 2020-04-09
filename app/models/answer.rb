@@ -1,11 +1,10 @@
 class Answer < ApplicationRecord
   belongs_to :question
+
   validates :body, presence: true
+  validate :max_answers, on: :create
 
   scope :correct, -> { where(correct: true) }
-
-  validate :max_answers
-  validate :min_answers
 
   private
 
@@ -13,7 +12,4 @@ class Answer < ApplicationRecord
     errors.add(question, 'Answers limit reached!') if question.answers.count >= 4
   end
 
-  def min_answers
-    errors.add(question, 'Answers minimum reached!') if question.answers.count <= 1
-  end
 end
