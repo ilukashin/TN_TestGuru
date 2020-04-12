@@ -2,8 +2,8 @@
   <% @test.questions.each do |question| %>
     <li>
       <%= question.body %>
-      <%= link_to 'Check', test_question_path(@test, question) %>
-      <%= link_to 'Delete', [@test, question], method: :delete %>
+      <%= link_to 'Check', question %>
+      <%= link_to 'Delete', question, method: :delete %>
     </li>
   <% end %>
 </ul>

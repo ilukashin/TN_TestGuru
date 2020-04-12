@@ -1,12 +1,13 @@
 class TestsController < ApplicationController
+  before_action :find_question
+
   def show 
-    get_question
     render 'show'
   end
 
   private
 
-  def get_question
+  def find_question
     @test = Test.find(params[:id])
   end
 end
