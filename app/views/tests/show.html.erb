@@ -1,0 +1,11 @@
+<ul>
+  <% @test.questions.each do |question| %>
+    <li>
+      <%= question.body %>
+      <%= link_to 'Check', test_question_path(@test, question) %>
+      <%= link_to 'Delete', [@test, question], method: :delete %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'New queston', new_test_question_path(@test) %>
