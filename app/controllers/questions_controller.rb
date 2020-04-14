@@ -1,15 +1,13 @@
 class QuestionsController < ApplicationController
-  before_action :find_question, only: %i[show destroy]
+  before_action :find_question, only: %i[show destroy edit update]
   before_action :find_test, only: %i[new create]
 
   rescue_from ActiveRecord::RecordNotFound, with: :question_not_found
 
-  def show 
-    render html: "<h3>#{@question.body}</h3>".html_safe
-  end
+  def show; end
 
   def new
-    @question = Question.new
+    @question = @test.questions.new()
   end
 
   def create
@@ -21,10 +19,19 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def update
+    if @question.update(post_params)
+      redirect_to @question.test
+    else
+      render 'edit'
+    end
+  end
+
+  def edit; end
+
   def destroy
-    @test = @question.test
     @question.destroy
-    redirect_to @test
+    redirect_to @question.test
   end
 
   private
