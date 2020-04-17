@@ -1,5 +1,6 @@
 
 <%= form_with model: @test do |f| %>
+<%= render 'shared/errors', resource: @test %>
   <p>
     <%= f.label :title %>
     <%= f.text_field :title %>

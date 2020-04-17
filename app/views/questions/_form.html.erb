@@ -1,4 +1,5 @@
 <%= form_with model: [@test, @question] do |f| %>
+<%= render 'shared/errors', resource: @question %>
   <p>
     <%= f.label :body %>
     <%= f.text_area :body %>
