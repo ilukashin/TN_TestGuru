@@ -23,6 +23,10 @@ class TestPassage < ApplicationRecord
     correct_questions.to_f / test.questions.count * 100
   end
 
+  def current_question_number
+    test_questions.where('id <= ?', current_question.id).count
+  end
+
   private 
 
   def before_validatation_set_next_question

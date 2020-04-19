@@ -1,7 +1,7 @@
 <h1>Passing the <%= @test_passage.test.title %> test</h1>
 <small>
     Progress:
-    <%= @test_passage.test.questions.index(@test_passage.current_question) + 1 %>
+    <%= @test_passage.current_question_number %>
     /
     <%= @test_passage.test.questions.count %>
 </small>
