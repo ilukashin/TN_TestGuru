@@ -2,9 +2,9 @@
 
 <b>Your result:
   <% if @test_passage.success? %>
-    <span style="color: green;">
+    <span class="success">
   <% else %>
-    <span style="color: red;">
+    <span style="fail">
   <% end %>
     <%= @test_passage.percent_correct %>%</span>
 </b>
