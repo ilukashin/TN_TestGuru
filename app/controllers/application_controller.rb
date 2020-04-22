@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     unless current_user
-      redirect_to login_path
+      redirect_to login_path, alert: 'You are not authorized to view this content'
     end
   end
 
