@@ -1,0 +1,8 @@
+<% if logged_in? %>
+  <p>Welcome, <%= current_user.name %> to <%= link_to 'TestGuru', root_path %>!</p>
+  <%= link_to 'Logout', logout_path, method: :post %>
+<% else %>
+  <p>Welcome to <%= link_to 'TestGuru', root_path %>!</p>
+  <%= link_to 'Login', login_path %>
+  <%= link_to 'Signup', signup_path %>
+<% end %>
