@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to session.delete(:request_url)
+      redirect_to session.delete(:request_url) || root_path
     else
       flash.now[:alert] = 'Wrong password or email.'
       render :new
