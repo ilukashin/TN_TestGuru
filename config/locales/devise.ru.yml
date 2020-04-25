@@ -1,0 +1,9 @@
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+
+en:
+  devise:
+    registrations:
+      signed_up: "Добро пожаловать, <username>"
+    sessions:
+      signed_in: "С возвращением, <username>!"
+      signed_out: "До встречи, <username>!"
