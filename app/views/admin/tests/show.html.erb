@@ -1,6 +1,6 @@
 <h1><%= @test.title %></h1>
 
-<%= link_to 'New queston', new_test_question_path(@test) %>
+<%= link_to 'New queston', new_admin_test_question_path(@test) %>
 <br>
 <table>
   <tr>
@@ -11,7 +11,7 @@
   <%= render @test.questions %>
 </table>
 
-<%= link_to 'Back', tests_path %>
+<%= link_to 'Back', admin_tests_path %>
 
 
 

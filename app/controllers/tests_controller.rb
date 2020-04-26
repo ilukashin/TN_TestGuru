@@ -1,38 +1,10 @@
 class TestsController < ApplicationController
-  before_action :find_test, only: %i[show edit update destroy start]
 
-  def show; end
-
+  before_action :authenticate_user!
+  before_action :find_test, only: %i[start]
+  
   def index
     @tests = Test.all
-  end
-
-  def new
-    @test = Test.new
-  end
-
-  def create
-    @test = Test.new(post_params)
-    if @test.save
-      redirect_to tests_path
-    else
-      render 'new'
-    end
-  end
-
-  def edit; end
-
-  def update
-    if @test.update(post_params)
-      redirect_to tests_path
-    else
-      render 'edit'
-    end
-  end
-
-  def destroy
-    @test.destroy
-    redirect_to tests_path
   end
 
   def start
@@ -44,9 +16,5 @@ class TestsController < ApplicationController
 
   def find_test
     @test = Test.find(params[:id])
-  end
-
-  def post_params
-    params.require(:test).permit(:title, :level, :category_id, :author_id)
   end
 end
