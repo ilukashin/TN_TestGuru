@@ -15,11 +15,6 @@
     <%= f.collection_select :category_id, Category.all, :id, :title, prompt: true %>
   </p>
 
-  <p>
-    <%= f.label :author_id %>
-    <%= f.collection_select :author_id, User.all, :id, :first_name, prompt: true %>
-  </p>
-
   <p><%= f.submit %></p>
 
 <% end %>
