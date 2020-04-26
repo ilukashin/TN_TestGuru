@@ -15,10 +15,9 @@ class Admin::TestsController < Admin::BaseController
   def create
     @test = Test.new(post_params)
     @test.author_id = current_user.id
-    
-    byebug
+
     if @test.save
-      redirect_to tests_path
+      redirect_to admin_tests_path
     else
       render 'new'
     end
@@ -28,7 +27,7 @@ class Admin::TestsController < Admin::BaseController
 
   def update
     if @test.update(post_params)
-      redirect_to tests_path
+      redirect_to admin_tests_path
     else
       render 'edit'
     end
@@ -36,7 +35,7 @@ class Admin::TestsController < Admin::BaseController
 
   def destroy
     @test.destroy
-    redirect_to tests_path
+    redirect_to admin_tests_path
   end
 
   def start
