@@ -2,6 +2,8 @@ ru:
   hello: "Привет мир"
 
   helpers:
+    select:
+      prompt: 'Выберите нужный вариант'
     submit:
       test:
         create: 'Создать тест'
@@ -69,8 +71,7 @@ ru:
         question: 'Вопрос'
         actions: 'Действия'
         back: 'Назад'
-      form:
-        select: 'Выберите вариант'
+
     questions:
       question:
         show: 'Посмотреть'

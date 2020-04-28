@@ -2,6 +2,8 @@ en:
   hello: "Hello world"
 
   helpers:
+    select:
+      prompt: 'Please select'
     submit:
       test:
         create: 'Create test'
@@ -68,8 +70,6 @@ en:
         question: 'Question'
         actions: 'Actions'
         back: 'Back'
-      form:
-        select: 'Please select'
 
     questions:
       question:
