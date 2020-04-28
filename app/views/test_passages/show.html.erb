@@ -1,6 +1,6 @@
-<h1>Passing the <%= @test_passage.test.title %> test</h1>
+<h1><%= t('.passing', test_name: @test_passage.test.title)  %></h1>
 <small>
-    Progress:
+    <%= t('.progress') %>
     <%= @test_passage.current_question_number %>
     /
     <%= @test_passage.test.questions.count %>
@@ -21,7 +21,7 @@
     </p>
   <% end %>
 
-  <%= form.submit 'Next' %>
+  <%= form.submit t('.next') %>
   
 <% end %>
 

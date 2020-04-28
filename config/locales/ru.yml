@@ -1,2 +1,23 @@
 ru:
   hello: "Привет мир"
+
+  tests:
+    index:
+      header: 'Список тестов'
+      test: 'Тест'
+      category: 'Категория'
+      questions: 'Вопросов'
+      actions: 'Действия'
+    test:
+      start: 'Начать'
+
+  test_passages:
+    show:
+      passing: 'Прохождение теста %{test_name}'
+      progress: 'Прогресс:'
+      next: 'Далее'
+    result:
+      header: 'Результаты теста %{test_name}'
+      result: 'Ваш результат'
+      tests_list: 'К списку тестов'
+
