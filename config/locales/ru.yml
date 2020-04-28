@@ -1,6 +1,29 @@
 ru:
   hello: "Привет мир"
 
+  helpers:
+    submit:
+      test:
+        create: 'Создать тест'
+        update: 'Обновить тест'
+      question:
+        create: 'Создать вопрос'
+        update: 'Обновить вопрос'
+      answer:
+        create: 'Создать ответ'
+        update: 'Обновить ответ'
+    label:
+      test:
+        title: 'Название'
+        level: 'Уровень'
+        category_id: 'Категория'
+      question:
+        body: 'Вопрос'
+      answer:
+        body: 'Текст'
+        correct: 'Правильный'
+
+
   tests:
     index:
       header: 'Список тестов'
@@ -20,4 +43,76 @@ ru:
       header: 'Результаты теста %{test_name}'
       result: 'Ваш результат'
       tests_list: 'К списку тестов'
+
+  admin:
+    tests:
+      index:
+        header: 'Список тестов'
+        test: 'Тест'
+        category: 'Категория'
+        questions: 'Вопросов'
+        actions: 'Действия'
+        create_new: 'Создать новый тест'
+      test:
+        show: 'Посмотреть'
+        delete: 'Удалить'
+        edit: 'Редактировать'
+        delete_confirm: 'Вы уверенны?'
+      new:
+        header: 'Создание нового теста'
+        back: 'Назад'
+      edit:
+        header: 'Редактирование теста'
+        back: 'Назад'
+      show:
+        new_question: 'Создать новый вопрос'
+        question: 'Вопрос'
+        actions: 'Действия'
+        back: 'Назад'
+      form:
+        select: 'Выберите вариант'
+    questions:
+      question:
+        show: 'Посмотреть'
+        edit: 'Редактировать'
+        delete: 'Удалить'
+        delete_confirm: 'Вы уверенны?'
+      new:
+        header: 'Создать новый вопрос для %{test_name}'
+        back: 'Назад'
+      edit:
+        header: 'Редактировать вопрос %{test_name}'
+        back: 'Назад'
+      show:
+        answer: 'Ответы'
+        new_answer: 'Создать новый ответ'
+        back: 'Назад'
+
+    answers:
+      answer:
+        show: 'Посмотреть'
+        edit: 'Редактировать'
+        delete: 'Удалить'
+        delete_confirm: 'Вы уверенны?'
+      show:
+        header: 'Вопрос'
+        answer: 'Ответ'
+        correct: 'Правильный'
+        back: 'Назад'
+      new:
+        header: 'Создать новый вопрос'
+        back: 'Назад'
+      edit:
+        header: 'Редактировать вопрос'
+        back: 'Назад'
+
+
+
+
+
+
+
+
+
+
 

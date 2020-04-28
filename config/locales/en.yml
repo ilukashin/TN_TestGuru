@@ -1,6 +1,28 @@
 en:
   hello: "Hello world"
 
+  helpers:
+    submit:
+      test:
+        create: 'Create test'
+        update: 'Update test'
+      question:
+        create: 'Create question'
+        update: 'Update question'
+      answer:
+        create: 'Create answer'
+        update: 'Update answer'
+    label:
+      test:
+        title: 'Title'
+        level: 'Level'
+        category_id: 'Category'
+      question:
+        body: 'Body'
+      answer:
+        body: 'Body'
+        correct: 'Correct'
+
   tests:
     index:
       header: 'Tests list'
@@ -20,4 +42,68 @@ en:
       header: 'Result %{test_name} test'
       result: 'Your result'
       tests_list: 'Tests list'
+  
+  admin:
+    tests:
+      index:
+        header: 'Tests list'
+        test: 'Test'
+        category: 'Category'
+        questions: 'Questions'
+        actions: 'Actions'
+        create_new: 'Create new test'
+      test:
+        show: 'Show'
+        delete: 'Delete'
+        edit: 'Edit'
+        delete_confirm: 'Are you sure?'
+      new:
+        header: 'Create new test'
+        back: 'Back'
+      edit:
+        edit: 'Edit test '
+        back: 'Back'
+      show:
+        new_question: 'Create new question'
+        question: 'Question'
+        actions: 'Actions'
+        back: 'Back'
+      form:
+        select: 'Please select'
+
+    questions:
+      question:
+        show: 'Show'
+        edit: 'Edit'
+        delete: 'delete'
+        delete_confirm: 'Are you sure?'
+      new:
+        header: 'Create new question for %{test_name}'
+        back: 'Back'
+      edit:
+        header: 'Edit question for %{test_name}'
+        back: 'Back'
+      show:
+        answers: 'Answers'
+        new_answer: 'Create new answer'
+        back: 'Back'
+
+    answers:
+      answer:
+        show: 'Show'
+        edit: 'Edit'
+        delete: 'Delete'
+        delete_confirm: 'Are you sure?'
+      show:
+        header: 'Question'
+        answer: 'Answer'
+        correct: 'Correct'
+        back: 'Back'
+      new:
+        header: 'Create new answer'
+        back: 'Back'
+      edit:
+        header: 'Edit answer'
+        back: 'Back'
+
 

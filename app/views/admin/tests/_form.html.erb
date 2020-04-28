@@ -12,7 +12,7 @@
 
   <p>
     <%= f.label :category_id %>
-    <%= f.collection_select :category_id, Category.all, :id, :title, prompt: true %>
+    <%= f.collection_select :category_id, Category.all, :id, :title, prompt: t('.select') %>
   </p>
 
   <p><%= f.submit %></p>
