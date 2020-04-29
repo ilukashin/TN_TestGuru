@@ -1,11 +1,15 @@
-<h1><%= t('.header') %></h1>
+<h1 class="display-4"><%= t('.header') %></h1>
 
-<table>
-  <tr>
-    <th><%= t('.test') %></th>
-    <th><%= t('.category') %></th>
-    <th><%= t('.questions') %></th>
-    <th><%= t('.actions') %></th>
-  </tr>
-  <%= render @tests %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"><%= t('.test') %></th>
+      <th scope="col"><%= t('.category') %></th>
+      <th scope="col"><%= t('.questions') %></th>
+      <th scope="col"><%= t('.actions') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @tests %>
+  </tbody>
 </table>

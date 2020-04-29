@@ -16,7 +16,12 @@
     <%= render 'shared/navbar' %>
     
     <%= render 'shared/flash' %>
-    <%= yield %>
+
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <%= yield %>
+      </div>
+    </div>
 
     <%= render 'shared/footer' %>
   </body>
