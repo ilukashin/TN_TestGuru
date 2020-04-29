@@ -1,6 +1,19 @@
 ru:
   hello: "Привет мир"
 
+  aliases: 
+    - &actions
+      show: 'Посмотреть'
+      edit: 'Редактировать'
+      delete: 'Удалить'
+      delete_confirm: 'Вы уверенны?'
+    - &back
+      back: 'Назад'
+    - &table_header
+      category: 'Категория'
+      questions: 'Вопросов'
+      actions: 'Действия'
+      
   helpers:
     select:
       prompt: 'Выберите нужный вариант'
@@ -25,14 +38,11 @@ ru:
         body: 'Текст'
         correct: 'Правильный'
 
-
   tests:
     index:
       header: 'Список тестов'
       test: 'Тест'
-      category: 'Категория'
-      questions: 'Вопросов'
-      actions: 'Действия'
+      <<: *table_header
     test:
       start: 'Начать'
 
@@ -51,69 +61,47 @@ ru:
       index:
         header: 'Список тестов'
         test: 'Тест'
-        category: 'Категория'
-        questions: 'Вопросов'
-        actions: 'Действия'
+        <<: *table_header
         create_new: 'Создать новый тест'
       test:
-        show: 'Посмотреть'
-        delete: 'Удалить'
-        edit: 'Редактировать'
-        delete_confirm: 'Вы уверенны?'
+        <<: *actions
       new:
         header: 'Создание нового теста'
-        back: 'Назад'
+        <<: *back
       edit:
         header: 'Редактирование теста'
-        back: 'Назад'
+        <<: *back
       show:
         new_question: 'Создать новый вопрос'
         question: 'Вопрос'
         actions: 'Действия'
-        back: 'Назад'
+        <<: *back
 
     questions:
       question:
-        show: 'Посмотреть'
-        edit: 'Редактировать'
-        delete: 'Удалить'
-        delete_confirm: 'Вы уверенны?'
+        <<: *actions
       new:
         header: 'Создать новый вопрос для %{test_name}'
-        back: 'Назад'
+        <<: *back
       edit:
         header: 'Редактировать вопрос %{test_name}'
-        back: 'Назад'
+        <<: *back
       show:
         answer: 'Ответы'
         new_answer: 'Создать новый ответ'
-        back: 'Назад'
+        <<: *back
 
     answers:
       answer:
-        show: 'Посмотреть'
-        edit: 'Редактировать'
-        delete: 'Удалить'
-        delete_confirm: 'Вы уверенны?'
+        <<: *actions
       show:
         header: 'Вопрос'
         answer: 'Ответ'
         correct: 'Правильный'
-        back: 'Назад'
+        <<: *back
       new:
         header: 'Создать новый вопрос'
-        back: 'Назад'
+        <<: *back
       edit:
         header: 'Редактировать вопрос'
-        back: 'Назад'
-
-
-
-
-
-
-
-
-
-
-
+        <<: *back

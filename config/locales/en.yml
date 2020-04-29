@@ -1,6 +1,19 @@
 en:
   hello: "Hello world"
 
+  aliases: 
+    - &actions
+      show: 'Show'
+      edit: 'Edit'
+      delete: 'Delete'
+      delete_confirm: 'Are you sure?'
+    - &back
+      back: 'Back'
+    - &table_header
+      category: 'Category'
+      questions: 'Questions'
+      actions: 'Actions'
+      
   helpers:
     select:
       prompt: 'Please select'
@@ -29,9 +42,7 @@ en:
     index:
       header: 'Tests list'
       test: 'Test'
-      category: 'Category'
-      questions: 'Questions'
-      actions: 'Actions'
+      <<: *table_header
     test:
       start: 'Start'
   
@@ -50,60 +61,47 @@ en:
       index:
         header: 'Tests list'
         test: 'Test'
-        category: 'Category'
-        questions: 'Questions'
-        actions: 'Actions'
+        <<: *table_header
         create_new: 'Create new test'
       test:
-        show: 'Show'
-        delete: 'Delete'
-        edit: 'Edit'
-        delete_confirm: 'Are you sure?'
+        <<: *actions
       new:
         header: 'Create new test'
-        back: 'Back'
+        <<: *back
       edit:
         edit: 'Edit test '
-        back: 'Back'
+        <<: *back
       show:
         new_question: 'Create new question'
         question: 'Question'
         actions: 'Actions'
-        back: 'Back'
+        <<: *back
 
     questions:
       question:
-        show: 'Show'
-        edit: 'Edit'
-        delete: 'delete'
-        delete_confirm: 'Are you sure?'
+        <<: *actions
       new:
         header: 'Create new question for %{test_name}'
-        back: 'Back'
+        <<: *back
       edit:
         header: 'Edit question for %{test_name}'
-        back: 'Back'
+        <<: *back
       show:
         answers: 'Answers'
         new_answer: 'Create new answer'
-        back: 'Back'
+        <<: *back
 
     answers:
       answer:
-        show: 'Show'
-        edit: 'Edit'
-        delete: 'Delete'
-        delete_confirm: 'Are you sure?'
+        <<: *actions
       show:
         header: 'Question'
         answer: 'Answer'
         correct: 'Correct'
-        back: 'Back'
+        <<: *back
       new:
         header: 'Create new answer'
-        back: 'Back'
+        <<: *back
       edit:
         header: 'Edit answer'
-        back: 'Back'
-
-
+        <<: *back
