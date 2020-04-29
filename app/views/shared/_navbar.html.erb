@@ -1,8 +1,30 @@
-<% if user_signed_in? %>
-  <p>Welcome, <%= current_user.first_name %> to <%= link_to 'TestGuru', root_path %>!</p>
-  <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-<% else %>
-  <p>Welcome to <%= link_to 'TestGuru', root_path %>!</p>
-  <%= link_to 'Login', new_user_session_path %>
-  <%= link_to 'Signup', new_user_registration_path %>
-<% end %>
+<nav class="navbar navbar-light bg-light">
+  <% if user_signed_in? %>
+    <p>Welcome, <%= current_user.first_name %> to <%= link_to 'TestGuru', root_path, class: 'navbar-brand' %>!</p>
+
+    <% if current_user.admin? %>
+      <ul class="nav mr-auto">
+        <li class="nav-item">
+          <%= link_to 'Admin Panel', admin_tests_path, class: 'nav-link' %>
+        </li>
+      </ul>
+    <% end %>
+
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+      </li>
+    </ul>
+
+  <% else %>
+    <p>Welcome to <%= link_to 'TestGuru', root_path, class: 'navbar-brand' %>!</p>
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Signup', new_user_registration_path, class: 'nav-link' %>
+      </li>
+    </ul>
+  <% end %>
+</nav>
