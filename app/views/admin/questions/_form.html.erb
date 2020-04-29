@@ -1,9 +1,14 @@
 <%= form_with model: [:admin, @test, @question] do |f| %>
 <%= render 'shared/errors', resource: @question %>
-  <p>
-    <%= f.label :body %>
-    <%= f.text_area :body %>
-  </p> 
+  <div class="form-group">
+    <p>
+      <%= f.label :body %>
+      <%= f.text_area :body, class: 'form-control' %>
+    </p> 
+  </div>
 
-  <p><%= f.submit %></p>
+  <div class="form-group">
+    <p><%= f.submit class: 'btn btn-success' %></p>
+  </div>
+
 <% end %>

@@ -3,7 +3,7 @@
 </h3>
 
 <h5><%= t('.answer') %></h5>
-<%= link_to t('.new_answer'), new_admin_question_answer_path(@question) %>
-<ol><%= render @question.answers %></ol>
+<%= link_to t('.new_answer'), new_admin_question_answer_path(@question), class: 'badge badge-success' %>
+<ol class="list-group"><%= render @question.answers %></ol>
 
-<%= link_to t('.back'), admin_test_path(@question.test) %>
+<%= link_to t('.back'), admin_test_path(@question.test), class: 'badge badge-secondary' %>

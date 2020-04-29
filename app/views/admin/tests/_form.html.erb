@@ -1,20 +1,21 @@
 <%= form_with model: [:admin, @test] do |f| %>
 <%= render 'shared/errors', resource: @test %>
+  <div class="form-group">
   <p>
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control' %>
   </p>
-
-  <p>
+  </div>
+  <div class="form-group">
     <%= f.label :level %>
-    <%= f.number_field :level %>
-  </p>
-
-  <p>
+    <%= f.number_field :level, class: 'form-control' %>
+  </div>
+  <div class="form-group">
     <%= f.label :category_id %>
-    <%= f.collection_select :category_id, Category.all, :id, :title, prompt: true %>
-  </p>
+    <%= f.collection_select :category_id, Category.all, :id, :title, { prompt: true }, { class: 'form-control' } %>
+  </div>
 
-  <p><%= f.submit %></p>
-
+  <div class="form-group">
+    <p><%= f.submit class: 'btn btn-success' %></p>
+  </div>
 <% end %>

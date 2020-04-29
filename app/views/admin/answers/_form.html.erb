@@ -1,16 +1,24 @@
 <%= form_with model: [:admin, @question, @answer], local: true do |form| %>
   <%= render 'shared/errors', resource: @answer %>
+  <div class="form-group">
+    <p>
+      <%= form.label :body%> <br>
+      <%= form.text_area :body, id: :answer_body, rows: 7, cols: 60, class: 'form-control' %>
+    </p>
+  </div>
 
-  <p>
-    <%= form.label :body%> <br>
-    <%= form.text_area :body, id: :answer_body, rows: 7, cols: 60 %>
-  </p>
-  <p>
-    <%= form.label :correct %>
-    <%= form.check_box :correct, id: :answer_correct %>
-  </p>
+  <div class="form-check">
+    <p>
+      <%= form.label :correct, class: 'form-check-label' do %>
+        <%= form.check_box :correct, id: :answer_correct, class: 'form-check-input' %>
+        Correct
+      <% end %>
+    </p>
+  </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+    <div class="actions">
+      <%= form.submit class: 'btn btn-success' %>
+    </div>
   </div>
 <% end %>

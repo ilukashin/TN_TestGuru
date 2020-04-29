@@ -1,9 +1,10 @@
-<li>
+<li class="list-item">
   <%= answer.body %><br>
-  <%= link_to t('.show'), admin_answer_path(answer) %>
-  <%= link_to t('.edit'), edit_admin_answer_path(answer) %>
+  <%= link_to t('.show'), admin_answer_path(answer), class: 'badge badge-info' %>
+  <%= link_to t('.edit'), edit_admin_answer_path(answer), class: 'badge badge-warning' %>
   <%= link_to t('.delete'), admin_answer_path(answer),
                         method: :delete,
-                        data: { confirm: t('.delete_confirm') } %>
+                        data: { confirm: t('.delete_confirm') },
+                        class: 'badge badge-danger' %>
 
 </li>
