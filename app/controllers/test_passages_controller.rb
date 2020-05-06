@@ -18,7 +18,11 @@ class TestPassagesController < ApplicationController
     work = GistQuestionService.new(@test_passage.current_question).call
 
     flash_options = if work.success?
-      { notice: "Successfully created gist! Check this #{view_context.link_to 'link', work.gist_link, target: '_blank'}." }
+      gist_link = work.gist_link
+      Gist.create!(question: @test_passage.current_question.body,
+                   url: gist_link,
+                   user_email: current_user.email)
+      { notice: "Successfully created gist! Check this #{view_context.link_to 'link', gist_link, target: '_blank'}." }
     else
       { alert: 'Failed to create gist.' }
     end
