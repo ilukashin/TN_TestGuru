@@ -1,5 +1,5 @@
 <% flash.each do |key, message| %>
   <div class="alert alert-<%= bootsrap_type(key) %>" role="alert">
-    <%= content_tag :p, message %>  
+    <%= content_tag :p, message.html_safe %>  
   </div>
 <% end %>

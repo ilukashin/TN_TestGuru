@@ -18,9 +18,9 @@ class TestPassagesController < ApplicationController
     work = GistQuestionService.new(@test_passage.current_question).call
 
     flash_options = if work.success?
-      { notice: 'success' }
+      { notice: "Successfully created gist! Check this #{view_context.link_to 'link', work.gist_link, target: '_blank'}." }
     else
-      { alert: 'alert' }
+      { alert: 'Failed to create gist.' }
     end
 
     redirect_to @test_passage, flash_options

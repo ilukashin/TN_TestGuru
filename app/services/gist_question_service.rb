@@ -15,6 +15,10 @@ class GistQuestionService
     @response.html_url.present?
   end
 
+  def gist_link
+    @response.html_url
+  end
+
   private
 
   def gist_params
