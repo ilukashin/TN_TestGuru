@@ -105,3 +105,9 @@ en:
       edit:
         header: 'Edit answer'
         <<: *back
+
+  services:
+    gist_question_service:
+      filename: 'Question from TG'
+      description: 'A question about %{title} from TestGuru'
+    

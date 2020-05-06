@@ -105,3 +105,9 @@ ru:
       edit:
         header: 'Редактировать вопрос'
         <<: *back
+
+  services:
+    gist_question_service:
+      filename: 'Вопрос из TG'
+      description: 'Вопрос %{title} из TestGuru'
+    
