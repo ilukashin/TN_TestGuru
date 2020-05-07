@@ -19,9 +19,7 @@ class TestPassagesController < ApplicationController
 
     flash_options = if work.success?
       gist_link = work.gist_link
-      Gist.create!(question: @test_passage.current_question.body,
-                   url: gist_link,
-                   user_email: current_user.email)
+      create_gist_object(@test_passage.current_question, gist_link)
       { notice: "Successfully created gist! Check this #{view_context.link_to 'link', gist_link, target: '_blank'}." }
     else
       { alert: 'Failed to create gist.' }
@@ -31,6 +29,13 @@ class TestPassagesController < ApplicationController
   end
 
   private
+
+  def create_gist_object(question, gist_link)
+    Gist.create!(title: question.body,
+                 url: gist_link,
+                 user_email: current_user.email,
+                 question_id: question.id)
+  end
 
   def set_test_passage
     @test_passage = TestPassage.find(params[:id])
