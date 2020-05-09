@@ -33,7 +33,7 @@ class TestPassagesController < ApplicationController
   def create_gist_object(question, gist_link)
     Gist.create!(title: question.body,
                  url: gist_link,
-                 user_email: current_user.email,
+                 user_id: current_user.id,
                  question_id: question.id)
   end
 

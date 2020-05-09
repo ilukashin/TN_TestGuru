@@ -1,5 +1,5 @@
 <tr>
     <td><%= link_to gist.title.truncate(25), admin_question_path(gist.question) %></td>
     <td><%= link_to gist.url.split('/').last, gist.url %></td>
-    <td><%= gist.user_email %></td>
+    <td><%= gist.user.email %></td>
 </tr>
