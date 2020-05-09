@@ -15,17 +15,17 @@ class TestPassagesController < ApplicationController
   end
 
   def gist
-    work = GistQuestionService.new(@test_passage.current_question).call
+    result = GistQuestionService.new(@test_passage.current_question).call
 
-    flash_options = if work.success?
-      gist_link = work.gist_link
+    if result.success?
+      gist_link = result.gist_link
       create_gist_object(@test_passage.current_question, gist_link)
-      { notice: "Successfully created gist! Check this #{view_context.link_to 'link', gist_link, target: '_blank'}." }
+      flash[:notice] = "Successfully created gist! Check this #{view_context.link_to 'link', gist_link, target: '_blank'}."
     else
-      { alert: 'Failed to create gist.' }
+      flash[:alert] = 'Failed to create gist.'
     end
 
-    redirect_to @test_passage, flash_options
+    redirect_to @test_passage
   end
 
   private
