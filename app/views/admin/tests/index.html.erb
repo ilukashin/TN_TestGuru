@@ -5,7 +5,11 @@
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th scope="col"><%= t('.test') %></th>
+      <th scope="col" class="sort-by-title pointer">
+        <%= t('.test') %>
+        <%= octicon 'arrow-up', class: 'text-success hide' %>
+        <%= octicon 'arrow-down', class: 'text-success hide' %>
+      </th>
       <th scope="col"><%= t('.category') %></th>
       <th scope="col"><%= t('.questions') %></th>
       <th class="text-center" scope="col" colspan="3"><%= t('.actions') %></th>
