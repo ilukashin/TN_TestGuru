@@ -7,13 +7,15 @@ document.addEventListener('turbolinks:load', function() {
 function checkIdentity() {
   var password = document.getElementById('user_password')
 
-  console.log('call checking')
   if (this.value === "") {
-    this.style = ""
+    this.classList.remove('wrong-input')
+    this.classList.remove('correct-input')
   } else if (this.value === password.value) {
-    this.style = "border-color: green; border-width: 3px;"
+    this.classList.remove('wrong-input')
+    this.classList.add('correct-input')
   } else {
-    this.style = "border-color: red; border-width: 3px;"
+    this.classList.remove('correct-input')
+    this.classList.add('wrong-input')
   }
 }
 

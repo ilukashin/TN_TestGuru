@@ -5,3 +5,13 @@
 .hide {
   display: none;
 }
+
+.wrong-input {
+  border-color: red;
+  border-width: 3px;
+}
+
+.correct-input {
+  border-color: green;
+  border-width: 3px;
+}
