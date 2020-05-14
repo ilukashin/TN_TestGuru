@@ -1,5 +1,5 @@
-<%= form_with model: [:admin, @test, @question] do |f| %>
-<%= render 'shared/errors', resource: @question %>
+<%= form_with model: [:admin, @test, @question], local: true do |f| %>
+  <%= render 'shared/errors', resource: @question %>
   <div class="form-group">
     <p>
       <%= f.label :body %>
