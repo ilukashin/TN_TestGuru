@@ -5,9 +5,9 @@ module FlashHelper
 
   def bootsrap_type(type)
     case type
-    when :notice then 'info'
-    when :alert then 'warning'
-    when :error then 'danger'
+    when "notice" then 'info'
+    when "alert" then 'warning'
+    when "error" then 'danger'
     end
   end
 end
