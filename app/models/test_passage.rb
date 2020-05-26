@@ -31,6 +31,14 @@ class TestPassage < ApplicationRecord
     test.questions.count
   end
 
+  def timer?
+    test.timer
+  end
+
+  def ends_in
+    (created_at + test.duration - Time.zone.now).to_i
+  end
+
   private 
 
   def before_validatation_set_next_question

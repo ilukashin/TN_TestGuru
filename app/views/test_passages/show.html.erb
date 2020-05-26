@@ -14,6 +14,9 @@
                   } %>
 </div>
 <br>
+<% if @test_passage.timer? %>
+  <p>Timer: <%= content_tag :span, @test_passage.ends_in, id: 'timer' %> </p>
+<% end %>
 
 <h4><%= @test_passage.current_question.body %></h4>
 
