@@ -56,9 +56,13 @@ class Admin::TestsController < Admin::BaseController
   end
 
   def test_params
-    test_pars = params.require(:test).permit(:title, :level, :category_id, :timer, :duration)
+    test_pars = params.require(:test).permit(:title, :level, :category_id, :duration)
 
-    test_pars[:duration] = test_pars[:duration].to_time.seconds_since_midnight unless test_pars[:duration].empty?
+    test_pars[:duration] = prepare_duration(test_pars[:duration]) if test_pars[:duration].present?
     test_pars
+  end
+
+  def prepare_duration(duration)
+    duration.to_time.seconds_since_midnight
   end
 end

@@ -18,6 +18,10 @@ class Test < ApplicationRecord
       .order(title: :desc)
   end)
 
+  def timer?
+    duration > 0
+  end
+
   def self.titles_by_category(name)
     by_category(name).pluck(:title)
   end

@@ -11,6 +11,9 @@ class TestPassage < ApplicationRecord
 
   def accept!(answer_ids)
     self.correct_questions += 1 if correct_answer?(answer_ids)
+
+    # set to last because callback later on save!
+    self.current_question = test.questions.last if test.timer? && finished?
     
     save!
   end
@@ -31,10 +34,6 @@ class TestPassage < ApplicationRecord
     test.questions.count
   end
 
-  def timer?
-    test.timer
-  end
-
   def ends_in
     (created_at + test.duration - Time.zone.now).to_i
   end
@@ -46,6 +45,8 @@ class TestPassage < ApplicationRecord
   end
 
   def correct_answer?(answer_ids)
+    return false if answer_ids.nil?
+
     correct_answers.ids.sort == answer_ids.map(&:to_i).sort
   end
 
@@ -65,4 +66,7 @@ class TestPassage < ApplicationRecord
     test.questions.order(:id)
   end
 
+  def finished?
+    ends_in <= 0
+  end
 end

@@ -14,13 +14,13 @@
                   } %>
 </div>
 <br>
-<% if @test_passage.timer? %>
+<% if @test_passage.test.timer? %>
   <p>Timer: <%= content_tag :span, @test_passage.ends_in, id: 'timer' %> </p>
 <% end %>
 
 <h4><%= @test_passage.current_question.body %></h4>
 
-<%= form_with url: test_passage_path(@test_passage), local: true, method: :put do |form| %>
+<%= form_with url: test_passage_path(@test_passage), local: true, method: :put, id: 'test-form' do |form| %>
   <%= form.collection_check_boxes :answer_ids,
                                   @test_passage.current_question.answers,
                                   :id,

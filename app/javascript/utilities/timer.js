@@ -8,7 +8,7 @@ document.addEventListener('turbolinks:load', function() {
     seconds -= 1
 
     if (seconds <= 0) {
-      window.location.reload(false)
+      document.getElementById('test-form').submit()
     }
 
     timer.innerText = timeFormatter(seconds)
