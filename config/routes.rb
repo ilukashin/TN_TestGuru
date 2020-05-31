@@ -30,9 +30,13 @@ Rails.application.routes.draw do
         resources :answers, shallow: true, except: :index
       end
     end
+
+    resources :badges
   end
 
   resource :feedbacks, only: %i[new create],
                        path: "feedback",
                        path_names: { new: '/' }
+
+  resources :badges, only: :index
 end
