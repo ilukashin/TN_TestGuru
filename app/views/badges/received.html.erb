@@ -1,0 +1,23 @@
+<h1>Received badges</h1>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Logo</th>
+      <th scope="col">Rule</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @badges %>
+  </tbody>
+</table>
+
+
+<p>
+  <%= link_to 'All bages', badges_review_path %>
+</p>
+
+<p>
+  <%= link_to 'Back', root_path %>
+</p>

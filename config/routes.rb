@@ -38,5 +38,6 @@ Rails.application.routes.draw do
                        path: "feedback",
                        path_names: { new: '/' }
 
-  resources :badges, only: :index
+  get 'badges', to: 'badges#received'
+  get 'badges-review', to: 'badges#index'
 end
