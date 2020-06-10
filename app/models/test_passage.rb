@@ -38,6 +38,10 @@ class TestPassage < ApplicationRecord
     (created_at + test.duration - Time.zone.now).to_i
   end
 
+  def badges_action(test_passage)
+    BadgesService.new(self).run
+  end
+
   private 
 
   def before_validatation_set_next_question
