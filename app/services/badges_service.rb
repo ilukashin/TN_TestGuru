@@ -13,8 +13,7 @@ class BadgesService
 
   def run
     check_all_conditions
-
-    Badge.assign_to_user(@success_rules)
+    assign_to_user(@success_rules)
   end
 
   private
@@ -23,9 +22,16 @@ class BadgesService
     Badge::RULES.each { |rule| self.send("check_#{rule}", rule) }
   end
 
-  def check_category(rule)
-    all_tests = Test.where(category: @test_category).pluck(:title)
-    user_tests = @user.tests.where(category: @test_category).pluck(:title).uniq
+  def check_test_category(rule)
+    all_tests = Test.where(category: @test_category).pluck(:id).sort
+    user_tests = @user.tests.where(category: @test_category).pluck(:id).uniq.sort
+
+    @success_rules.push(rule) if user_tests.eql?(all_tests)
+  end
+
+  def check_category_backend(rule)
+    all_tests = Test.where(category: 'Backend').pluck(:id).sort
+    user_tests = @user.tests.where(category: 'Backend').pluck(:id).uniq.sort
 
     @success_rules.push(rule) if user_tests.eql?(all_tests)
   end
@@ -38,9 +44,18 @@ class BadgesService
   end
 
   def check_tests_level(rule)
-    all_tests = Test.where(level: @test_level).pluck(:title)
-    user_tests = @user.tests_by_level(@test_level).pluck(:title).uniq
+    all_tests = Test.where(level: @test_level).pluck(:id).sort
+    user_tests = @user.tests_by_level(@test_level).pluck(:id).uniq.sort
 
     @success_rules.push(rule) if user_tests.eql?(all_tests)
+  end
+
+  def assign_to_user(rules)
+    rules.each { |rule| add_badge_to_current_user(rule) }
+  end
+
+  def add_badge_to_current_user(rule)
+    BadgesUsers.create!({ badge_id: Badge.where(rule: rule).first.id,
+                          user_id: current_user.id })
   end
 end
