@@ -4,7 +4,8 @@ class TestPassagesController < ApplicationController
   def show; end
 
   def result
-    BadgesService.new(@test_passage).run
+    badges = BadgesService.new(@test_passage).run
+    flash[:notice] = "You've got new badges: #{Badge.find(badges).pluck(:name).join(',')}!" unless badges.empty?
   end
 
   def update
