@@ -1,61 +1,77 @@
 class BadgesService
+
+  attr_reader :badges
   
   def initialize(test_passage)
     @test_passage = test_passage
     @user = test_passage.user
 
-    @test_title = @test_passage.test.title
-    @test_level =  @test_passage.test.level
-    @test_category = @test_passage.test.category.title
+    @badges = []
 
-    @badges_ids = []
-    @checked = false
+    check_all_conditions
   end
-
-  # completed work with badges - check and reward user
-  def run
-    check_all_conditions unless @checked
-    assign_badges_to_user(@badges_ids)
-    @badges_ids
-  end
-
-  # only for getting list of badges ids
-  def check_all_conditions
-    Badge::RULES.each { |rule| self.send("check_#{rule}", rule) }
-    @checked = true
-    @badges_ids
-  end
-
+  
   private
 
-  def check_test_category(rule)
-    all_tests = Category.where(title: @test_category).first&.tests.pluck(:id).sort
-    user_tests = @user.tests.where(category: @test_category).pluck(:id).uniq.sort
-
-    @badges_ids.push(Badge.where(rule: rule, value: @test_category).first&.id) if user_tests.eql?(all_tests)
+  def check_all_conditions
+    Badge::RULES.each { |rule| self.send("check_#{rule}") }
   end
 
-  def check_attempts(rule)
-    user_tests_attempts = @user.tests.where(title: @test_title).count
+  def check_test_category
+    return unless @test_passage.success?
 
-    badge_id = Badge.where(rule: rule, value: user_tests_attempts).first&.id
+    test_category = @test_passage.test.category
+    badge = find_badge('category', test_category.title)
+    return unless badge.present?
 
-    @badges_ids.push(badge_id) if badge_id
+    all_tests = test_category.tests.ids.sort
+    user_tests = find_user_tests(all_tests, last_badge_time(badge))
+
+    @badges.push(badge) if user_tests.eql?(all_tests)
   end
 
-  def check_tests_level(rule)
-    all_tests = Test.where(level: @test_level).pluck(:id).sort
-    user_tests = @user.tests_by_level(@test_level).pluck(:id).uniq.sort
+  def check_attempts
+    return unless @test_passage.success?
 
-    @badges_ids.push(Badge.where(rule: rule, value: @test_level).first&.id) if user_tests.eql?(all_tests)
+    user_tests_attempts = @user.test_passages.where(test_id: Test.where(title: @test_passage.test.title)
+                                                                                                 .ids)
+                                             .count
+    badge = find_badge('attempts', user_tests_attempts)
+
+    @badges.push(badge) if badge.present?
   end
 
-  def assign_badges_to_user(badges_ids)
-    badges_ids.each { |id| add_badge_to_current_user(id) }
+  def check_tests_level
+    return unless @test_passage.success?
+
+    test_level = @test_passage.test.level
+    badge = find_badge('tests_level', test_level)
+    return unless badge.present?
+
+    all_tests = Test.where(level: test_level).ids.sort
+    user_tests = find_user_tests(all_tests, last_badge_time(badge))
+
+    @badges.push(badge) if user_tests.eql?(all_tests)
   end
 
-  def add_badge_to_current_user(badge_id)
-    BadgesUser.create!({ badge_id: badge_id,
-                          user_id: @user.id })
+  def find_badge(rule, value)
+    Badge.where(rule: rule, value: value).first
+  end
+
+  def last_badge_time(badge)
+    if @user.badges.include?(badge)
+      @user.badges_user.where(badge_id: badge.id).last.created_at
+    else
+      DateTime.new
+    end
+  end
+
+  def find_user_tests(test_ids, since_time)
+    @user.test_passages.where(test_id: test_ids,
+                              created_at: since_time..Time.zone.now)
+                       .select { |tp| tp.success? }
+                       .pluck(:test_id)
+                       .uniq
+                       .sort
   end
 end
