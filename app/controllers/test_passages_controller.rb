@@ -3,7 +3,14 @@ class TestPassagesController < ApplicationController
 
   def show; end
 
-  def result; end
+  def result
+    badges = BadgesService.new(@test_passage).badges
+    
+    unless badges.empty?
+      current_user.badges << badges
+      flash[:notice] = "You've got new badges: #{badges.pluck(:name).join(',')}!" 
+    end
+  end
 
   def update
     @test_passage.accept!(params[:answer_ids])
